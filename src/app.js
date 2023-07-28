@@ -1,12 +1,9 @@
 import express from "express";
 import morgan from "morgan";
 import pkg from "../package.json";
+import router from "./routes";
 
 const app = express();
-
-import moviesRoutes from "./routes/movies.routes";
-import authRoutes from "./routes/auth.routes";
-import userRoutes from "./routes/user.routes";
 
 app.set("pkg", pkg);
 
@@ -18,9 +15,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use('/movies',moviesRoutes);
-app.use('/auth',authRoutes);
-app.use('/users',userRoutes);
+app.use("/api", router);
 
 app.use(morgan("dev"));
 
