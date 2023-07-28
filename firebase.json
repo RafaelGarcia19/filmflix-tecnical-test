@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "filmflix-363c0",
+  "private_key_id": "4fded4bc60846dd850d51b5ac1657860c45efd30",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKbJEt+BCvIfcP\nSge/Sw0dlFdpQMgjG881FcAYSz1z6yxkFVFS5XS02IEEb+Ng9kWM7Mih0yjYH5P7\nwibpmx9zwgDZ7x3awXE7sgNNXtISIhJqwGVreV3Ksktvcjh2u3ChP67nvZKF51jR\nsK2DCrHtOqpLmF9yEklR/7mhDo3CljvTAe0ujrus2AzPRL7VmSKhOyDvzvFgq9vT\nnY+Bg5s40i2d5htoQM90qGFxx3jsehGeJfqvaf5c3iB2+MAHRSFEq3l2RKF2yE6j\nnuvvOrA0Ki6kBH/Jft5jScgBmpkUB7YtQtzw9xp6qD2JFIEUmM/YEZwZwhj1SjJl\nJj1jx2xnAgMBAAECggEAXiH7p3lm5NJyLjl6fdI8cKd1uLwH9g+uHZ0WPhXrJ3dT\nJt2k+lw7GAhggvw3LHWJ5V2NdXeZVFvm+NoSN2tMRowO0kn4w6xWaHDBSV8RaJ5Q\nmzUKVN7VJ3gfTV279Tb4Svwu7ZSCSWPKsYSsQ7abBFtWKx5aMFVhpFC79bIraTOZ\nHsn6Bseg1ITgNSfLQThunDcMA+voTrq/tnDUW46of3SYrs+E6uYPEBMIb0pvnnVU\n46dZNrQcyMF215C/P70mdZ5oZV928ecsnDJ88Rl6NCOOaGjy9RRsAYWlF6veqYEF\nP4sX4J2tQESZE/TsUyBAkaj12GFCT5LJML7Y/z9rxQKBgQDqxKo9DQeRQQlr5q/L\n0y3TuExkjKvH/SIyf0MxFBA0BfEFCbNOr5ygEVJ1zrS3P3wxJxp1tFAnpaZRJ8RG\nvHY/QITApxItIL+tkPV/ah3yWztYf82TSBlqPdRBFM2oD2QgYxo/5x27o55Lsi6o\nesL1eQqVoSySFgk9xv8mV/R6iwKBgQDcuxLH5ovz5nYB7nUipS7IuWZ7rtecZSVW\naY/7plKBH8b+7b+L941+OWxnGskmGyPkVEAkT1yn7NHp79cJ9bnrUjEYfqBTrJKk\n1Tt/TBgmA4XFHGU6wBtcjSrYveECoS2jyaBnwHmzZN1BFXKie+sdol6LP/SHPSfT\nMbsAiJr9FQKBgEk7PYs7tD+YFPNGi1G+Nw5S7+lxg+gnSvKLhg8aHg/MRql2pCsI\nVogLvzgmWXLL59aBRxyuOU6UunOYPv59rTj/zCk4NFBFZeUjUaEEHgFKehGaFCs8\nE0lzrfD7J0ekPWxo3XhPhJPSbv9XvnwphwUBU87m7rtHCmzt1QtF5moPAoGBAJ5o\nnzTZDs1uMnh2YpgHhcjFzXer5c62hBI81fkaxxEl9hEUHKhdc60HlvVzsrHnPl3p\n3NJyJiPZgFhsKJ5cPB5WsSdMENGcAu3KndVgjeASHRl1pGyCW+CS6xH7SxUxCOkH\nlVeAOZb2JxdDRi630edFlKZIsruvtvoJMZRTdS91AoGBAKHtjZi8VwJepm+OvYLm\nSc1zxzQOfgHQ/nhr/SYOVlCWW2UQcwqvWpPuohwyEkDInh9KnxW5F2yzIjZ6W5Sb\nlFn058G3EpMYveR5gj0WWaCPqhVMOfjbRJl2N8fEHTPCX16vCaiPUfL1YjZ04DXD\npFpyyahiC+6pT6+5zffvNvj9\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-6g86o@filmflix-363c0.iam.gserviceaccount.com",
+  "client_id": "107240937525968619685",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-6g86o%40filmflix-363c0.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
