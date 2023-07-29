@@ -3,8 +3,10 @@ import morgan from "morgan";
 import pkg from "../package.json";
 import router from "./routes";
 import env from "./config";
+import { createRoles } from "./libs/initialSetup.utils";
 
 const app = express();
+createRoles();
 
 app.set("pkg", pkg);
 app.set("port", env.port);
