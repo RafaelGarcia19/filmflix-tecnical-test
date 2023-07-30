@@ -1,5 +1,10 @@
 import { dbNumberRoles, dbCreateRole } from "../models/role.model";
 
+/**
+ * Create roles if not exists in database
+ * @returns {Promise<void>}
+ * @description Create roles if not exists in database
+ */
 export const createRoles = async () => {
   try {
     const count = await dbNumberRoles();

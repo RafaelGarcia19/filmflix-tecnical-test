@@ -5,15 +5,21 @@ import router from "./routes";
 import env from "./config";
 import { createRoles } from "./libs/initialSetup.utils";
 
+// Initializations
 const app = express();
+
+// Create roles if not exists in database
 createRoles();
 
+// Settings
 app.set("pkg", pkg);
 app.set("port", env.port);
-
 app.use(express.json());
+
+// Middlewares
 app.use(morgan("dev"));
 
+// Routes
 app.get("/", (req, res) => {
   res.json({
     name: app.get("pkg").name,
@@ -21,7 +27,6 @@ app.get("/", (req, res) => {
     description: app.get("pkg").description,
   });
 });
-
 app.use("/api", router);
 
 export default app;

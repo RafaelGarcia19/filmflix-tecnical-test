@@ -3,6 +3,13 @@ import { encryptPassword, comparePassword } from "../libs/bcrypt.utils";
 import { createToken } from "../libs/jwt.utils";
 import { dbGetRoles } from "../models/role.model";
 
+/**
+ * Register a new user
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Promise<Object>}
+ * @description Register a new user
+ */
 export const register = async (req, res) => {
   const { email, name, password } = req.body;
   const userExists = await dbGetUserByEmail(email);
@@ -28,6 +35,13 @@ export const register = async (req, res) => {
   });
 };
 
+/**
+ * Register a new user with roles
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Promise<Object>}
+ * @description Register a new user with roles
+ */
 export const registerAdmin = async (req, res) => {
   const { email, name, password, roles } = req.body;
   const userExists = await dbGetUserByEmail(email);
@@ -62,6 +76,13 @@ export const registerAdmin = async (req, res) => {
   });
 };
 
+/**
+ * Login user
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Promise<Object>}
+ * @description Login user
+ */
 export const login = async (req, res) => {
   const body = req.body;
   const user = await dbGetUserByEmail(body.email);
