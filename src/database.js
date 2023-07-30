@@ -1,15 +1,17 @@
-import admin from 'firebase-admin';
-import serviceAccount from '../firebase.json';
+import { initializeApp, cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import { getStorage } from "firebase-admin/storage";
+import serviceAccount from "../firebase.json";
+import env from "./config";
 
 // Initialize Firebase
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+initializeApp({
+  credential: cert(serviceAccount),
+  storageBucket: env.db.storageBucket,
 });
 
-const db = admin.firestore();
+const db = getFirestore();
 
-const storage = admin.storage();
+const storage = getStorage().bucket();
 
-export default db;
-
-export { storage };
+export { db, storage };
