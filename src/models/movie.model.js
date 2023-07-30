@@ -31,7 +31,6 @@ export const dbCreateMovieWithImage = async (movie, images) => {
     await docRef.update({ images: imageUrls });
     return { ...movieWithId, images: imageUrls };
   } catch (error) {
-    console.log(error);
     return null;
   }
 };

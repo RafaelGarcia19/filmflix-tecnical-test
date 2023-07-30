@@ -90,7 +90,6 @@ export const login = async (req, res) => {
     return res.status(400).json({ message: "User not found" });
   }
   const validPassword = await comparePassword(body.password, user.password);
-  console.log(validPassword);
   if (!validPassword) {
     return res.status(400).json({ message: "Invalid password" });
   }
