@@ -3,13 +3,16 @@ import morgan from "morgan";
 import pkg from "../package.json";
 import router from "./routes";
 import env from "./config";
-import { createRoles } from "./libs/initialSetup.utils";
+import { createRoles, createAdmin } from "./libs/initialSetup.utils";
 
 // Initializations
 const app = express();
 
 // Create roles if not exists in database
 createRoles();
+
+// Create user admin if not exists in database
+createAdmin();
 
 // Settings
 app.set("pkg", pkg);
