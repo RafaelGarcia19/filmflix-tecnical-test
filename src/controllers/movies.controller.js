@@ -1,5 +1,10 @@
 import Movie from "../models/movie.model";
-import { dbMovies, dbCreateMovieWithImage, dbDeleteMovieById } from "../models/movie.model";
+import {
+  dbMovies,
+  dbCreateMovieWithImage,
+  dbDeleteMovieById,
+  dbEditMovieById,
+} from "../models/movie.model";
 
 export const createMovie = async (req, res) => {
   const newMovie = {
@@ -30,21 +35,23 @@ export const getMovieById = async (req, res) => {
 
 export const updateMovieById = async (req, res) => {
   const id = req.params.movieId;
-  const docsSnapshot = await Movie.doc(id).get();
-  const movie = docsSnapshot.data();
-  const { title, director, year } = req.body;
-  const updatedMovie = {
-    title: title || movie.title,
-    director: director || movie.director,
-    year: year || movie.year,
+  const movie = {
+    title: req.body.title,
+    decription: req.body.decription,
+    stock: Number(req.body.stock),
+    rental_price: Number(req.body.rental_price),
+    sale_price: Number(req.body.sale_price),
+    availability: !!req.body.availability,
   };
-  await Movie.doc(id).set(updatedMovie);
-  res.json(updatedMovie);
+  const images = req.files;
+  const response = await dbEditMovieById(id, movie, images);
+  if (!response) return res.status(404).json({ message: "Movie not found" });
+  res.json(response);
 };
 
 export const deleteMovieById = async (req, res) => {
-    const id = req.params.movieId;
-    const response = await dbDeleteMovieById(id);
-    if (!response) return res.status(404).json({ message: "Movie not found" });
-    res.json({ message: "Movie deleted successfully" });
+  const id = req.params.movieId;
+  const response = await dbDeleteMovieById(id);
+  if (!response) return res.status(404).json({ message: "Movie not found" });
+  res.json({ message: "Movie deleted successfully" });
 };

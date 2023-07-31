@@ -55,7 +55,50 @@ export const dbDeleteMovieById = async (id) => {
     await docRef.delete();
     return true;
   } catch (error) {
-    console.log(error);
+    return null;
+  }
+};
+
+/**
+ * Edit movie by id with new movie data or add new images
+ * @param {string} id
+ * @param {object} movie
+ * @param {array} images
+ * @returns {object | null } movie
+ */
+export const dbEditMovieById = async (id, movie, images) => {
+  try {
+    const docRef = usersRef.doc(id);
+    const doc = await docRef.get();
+    if (!doc.exists) return null;
+    const movieData = doc.data();
+    const imageStorageRefs = movieData.imageStorageRefs;
+    const imageUrls = movieData.images;
+    if (images) {
+      const newImageUrls = await Promise.all(
+        images.map(async (image) => {
+          if (image.mimetype !== "image/jpeg" && image.mimetype !== "image/png")
+            return null;
+          const imageStorageName = `movies/${id}/${Date.now()}`;
+          const imageRef = storage.file(imageStorageName);
+          await imageRef.save(image.buffer, { contentType: image.mimetype });
+          const imageUrl = await imageRef.getSignedUrl({
+            action: "read",
+            expires: "03-09-2491",
+          });
+          imageStorageRefs.push(imageStorageName);
+          return imageUrl[0];
+        })
+      );
+      imageUrls.push(...newImageUrls);
+    }
+    await docRef.update({
+      ...movie,
+      images: imageUrls,
+      imageStorageRefs,
+    });
+    return { id, ...movie, images: imageUrls, imageStorageRefs };
+  } catch (error) {
     return null;
   }
 };
