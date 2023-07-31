@@ -18,11 +18,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}movies/",
+							"raw": "{{url}}api/movies/",
 							"host": [
-								"{{url}}movies"
+								"{{url}}api"
 							],
 							"path": [
+								"movies",
 								""
 							],
 							"query": [
@@ -62,11 +63,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}movies/admin?availability=true",
+							"raw": "{{url}}api/movies/admin?availability=true",
 							"host": [
-								"{{url}}movies"
+								"{{url}}api"
 							],
 							"path": [
+								"movies",
 								"admin"
 							],
 							"query": [
@@ -110,11 +112,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}movies/AECjwymVCZhA3yM0rUKi",
+							"raw": "{{url}}api/movies/AECjwymVCZhA3yM0rUKi",
 							"host": [
-								"{{url}}movies"
+								"{{url}}api"
 							],
 							"path": [
+								"movies",
 								"AECjwymVCZhA3yM0rUKi"
 							]
 						}
@@ -137,11 +140,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}movies/name/Barbie",
+							"raw": "{{url}}api/movies/name/Barbie",
 							"host": [
-								"{{url}}movies"
+								"{{url}}api"
 							],
 							"path": [
+								"movies",
 								"name",
 								"Barbie"
 							]
@@ -208,11 +212,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}movies/",
+							"raw": "{{url}}api/movies/",
 							"host": [
-								"{{url}}movies"
+								"{{url}}api"
 							],
 							"path": [
+								"movies",
 								""
 							]
 						}
@@ -302,11 +307,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}movies/SMVBLV7M41VCzmoQtLVG",
+							"raw": "{{url}}api/movies/SMVBLV7M41VCzmoQtLVG",
 							"host": [
-								"{{url}}movies"
+								"{{url}}api"
 							],
 							"path": [
+								"movies",
 								"SMVBLV7M41VCzmoQtLVG"
 							]
 						}
@@ -344,11 +350,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}auth/register",
+							"raw": "{{url}}api/auth/register",
 							"host": [
-								"{{url}}auth"
+								"{{url}}api"
 							],
 							"path": [
+								"auth",
 								"register"
 							]
 						}
@@ -391,11 +398,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}auth/register/admin",
+							"raw": "{{url}}api/auth/register/admin",
 							"host": [
-								"{{url}}auth"
+								"{{url}}api"
 							],
 							"path": [
+								"auth",
 								"register",
 								"admin"
 							]
@@ -439,11 +447,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}auth/login",
+							"raw": "{{url}}api/auth/login",
 							"host": [
-								"{{url}}auth"
+								"{{url}}api"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -480,11 +489,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}users/addlikedmovie",
+							"raw": "{{url}}api/users/addlikedmovie",
 							"host": [
-								"{{url}}users"
+								"{{url}}api"
 							],
 							"path": [
+								"users",
 								"addlikedmovie"
 							]
 						}
@@ -516,11 +526,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}users/removelikedmovie",
+							"raw": "{{url}}api/users/removelikedmovie",
 							"host": [
-								"{{url}}users"
+								"{{url}}api"
 							],
 							"path": [
+								"users",
 								"removelikedmovie"
 							]
 						}
@@ -555,11 +566,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}users/allusers",
+							"raw": "{{url}}api/users/allusers",
 							"host": [
-								"{{url}}users"
+								"{{url}}api"
 							],
 							"path": [
+								"users",
 								"allusers"
 							]
 						}
@@ -596,11 +608,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}rent-movies/rent",
+							"raw": "{{url}}api/rent-movies/rent",
 							"host": [
-								"{{url}}rent-movies"
+								"{{url}}api"
 							],
 							"path": [
+								"rent-movies",
 								"rent"
 							]
 						}
@@ -624,7 +637,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"rAHiPJeQczRWq9mqSMDp\"\n}",
+							"raw": "{\n    \"id\": \"NcMLZjB65GylGYiNE8BS\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -632,11 +645,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}rent-movies/return",
+							"raw": "{{url}}api/rent-movies/return",
 							"host": [
-								"{{url}}rent-movies"
+								"{{url}}api"
 							],
 							"path": [
+								"rent-movies",
 								"return"
 							]
 						}
@@ -671,11 +685,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}rent-movies/active",
+							"raw": "{{url}}api/rent-movies/active",
 							"host": [
-								"{{url}}rent-movies"
+								"{{url}}api"
 							],
 							"path": [
+								"rent-movies",
 								"active"
 							]
 						}
@@ -690,13 +705,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/",
+					"raw": "{{url}}",
 					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						""
+						"{{url}}"
 					]
 				}
 			},
