@@ -2,6 +2,14 @@ import { db, storage } from "../database";
 
 const moviesRef = db.collection("movies");
 
+/**
+ * Get all movies with pagination and order for users from firestore
+ * @param {number} page
+ * @param {number} pageSize
+ * @param {string} orderBy
+ * @returns {array} movies
+ * @description This function return an array of movies with pagination and order from firestore
+ */ 
 export const dbGetMovies = async (page, pageSize, orderBy) => {
   try {
     const movieCollectionInfo = await moviesRef.get();
@@ -32,6 +40,15 @@ export const dbGetMovies = async (page, pageSize, orderBy) => {
   }
 };
 
+/**
+ * Get all movies with pagination and order for admin from firestore and filter by availability
+ * @param {number} page
+ * @param {number} pageSize
+ * @param {string} orderBy
+ * @param {boolean} availability
+ * @returns {array} movies
+ * @description This function return an array of movies with pagination and order from firestore and filter by availability
+ */
 export const dbGetMoviesAdmin = async (
   page,
   pageSize,
@@ -71,6 +88,13 @@ export const dbGetMoviesAdmin = async (
   }
 };
 
+/**
+ * Create a movie in firestore with images in storage and return the movie with id
+ * @param {Object} movie
+ * @param {array} images
+ * @returns {Object | null} movie
+ * @description This function return a movie object with id and images url from firestore and storage
+ */
 export const dbCreateMovieWithImage = async (movie, images) => {
   try {
     const docRef = await moviesRef.add(movie);
@@ -99,6 +123,12 @@ export const dbCreateMovieWithImage = async (movie, images) => {
   }
 };
 
+/**
+ * Delete movie by id from firestore and storage if the movie is not found return null
+ * @param {string} id
+ * @returns {boolean | null} true
+ * @description This function return true if the movie is deleted
+ */
 export const dbDeleteMovieById = async (id) => {
   try {
     const docRef = moviesRef.doc(id);
