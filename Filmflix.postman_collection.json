@@ -1,0 +1,706 @@
+{
+	"info": {
+		"_postman_id": "7d167507-0ed5-4350-ae92-350b41340728",
+		"name": "Filmflix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28809527"
+	},
+	"item": [
+		{
+			"name": "Movie",
+			"item": [
+				{
+					"name": "Get alll movies",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}movies/",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "likes",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get alll movies admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODIxMjgxLCJleHAiOjE2OTA5MDc2ODF9.kE6nhmQ5ASB3MPk5kn9Ohd8dqnA6lR-8aQ35dUj1fAo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}movies/admin?availability=true",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								"admin"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "likes",
+									"disabled": true
+								},
+								{
+									"key": "availability",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movie by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU0MndjTUNLTHFVMEdpcjFFb0xnIiwiaWF0IjoxNjkwNjY2NzYxLCJleHAiOjE2OTA3NTMxNjF9.l2Q9FnIwYdGQiNKqhwlYGN1OCq2T3VU4mpRikYztCSQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}movies/AECjwymVCZhA3yM0rUKi",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								"AECjwymVCZhA3yM0rUKi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get movie by name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU0MndjTUNLTHFVMEdpcjFFb0xnIiwiaWF0IjoxNjkwNjY2NzYxLCJleHAiOjE2OTA3NTMxNjF9.l2Q9FnIwYdGQiNKqhwlYGN1OCq2T3VU4mpRikYztCSQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}movies/name/Barbie",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								"name",
+								"Barbie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODE3ODk1LCJleHAiOjE2OTA5MDQyOTV9.PVbTKSf9_QMgP3l7zOkvGAfV4dsJXvKnafvunH6Lvn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Barbie",
+									"type": "text"
+								},
+								{
+									"key": "decription",
+									"value": "Pelicula de machos",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "rental_price",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "sale_price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "availability",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/home/rafael/Escritorio/barbie/2023-07-31_10-06.png",
+										"/home/rafael/Escritorio/barbie/fNtqD4BTFj0Bgo9lyoAtmNFzxHN.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}movies/",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODE3ODk1LCJleHAiOjE2OTA5MDQyOTV9.PVbTKSf9_QMgP3l7zOkvGAfV4dsJXvKnafvunH6Lvn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}movies/zcZn9tnwZCQrhVjPEWmT",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								"zcZn9tnwZCQrhVjPEWmT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwNzYyMzYzLCJleHAiOjE2OTA4NDg3NjN9.TcQ_lNJ4upO26qnO27wCRKj7oP6J33u99ak2Iu6j9ZM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Barbie",
+									"type": "text"
+								},
+								{
+									"key": "decription",
+									"value": "Pelicula de machos",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "29",
+									"type": "text"
+								},
+								{
+									"key": "rental_price",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "sale_price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "availability",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/home/rafael/Imágenes/feli.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}movies/SMVBLV7M41VCzmoQtLVG",
+							"host": [
+								"{{url}}movies"
+							],
+							"path": [
+								"SMVBLV7M41VCzmoQtLVG"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Rafael\",\n    \"email\": \"rafael@example.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}auth/register",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODIxMjgxLCJleHAiOjE2OTA5MDc2ODF9.kE6nhmQ5ASB3MPk5kn9Ohd8dqnA6lR-8aQ35dUj1fAo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Rafael\",\n    \"email\": \"rafael@example.com\",\n    \"password\": \"password\",\n    \"roles\": [\"user\",\"administrador\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}auth/register/admin",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"register",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImF1N21td2x5VTJlbVV4TUV4UTlPIiwiaWF0IjoxNjkwNTk0NDg5LCJleHAiOjE2OTA2ODA4ODl9.lNibvy1fEDhf8NxJjpUjcaXZarITuMYWxto3qAHWhCI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Like a movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODIxMjgxLCJleHAiOjE2OTA5MDc2ODF9.kE6nhmQ5ASB3MPk5kn9Ohd8dqnA6lR-8aQ35dUj1fAo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idmovie\": \"fqfypJAGKNSR4xU6pb1o\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}users/addlikedmovie",
+							"host": [
+								"{{url}}users"
+							],
+							"path": [
+								"addlikedmovie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike a movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODIxMjgxLCJleHAiOjE2OTA5MDc2ODF9.kE6nhmQ5ASB3MPk5kn9Ohd8dqnA6lR-8aQ35dUj1fAo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idmovie\": \"fqfypJAGKNSR4xU6pb1o\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}users/removelikedmovie",
+							"host": [
+								"{{url}}users"
+							],
+							"path": [
+								"removelikedmovie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All users admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlZodHBWN2xnM1loUVNsdFR3Q3JYIiwiaWF0IjoxNjkwODM1MTk1LCJleHAiOjE2OTA5MjE1OTV9.bF07lZlXrdwwoS2HUnnkOqBWaivwcwAmfhAmra0NuqE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}users/allusers",
+							"host": [
+								"{{url}}users"
+							],
+							"path": [
+								"allusers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rent-movies",
+			"item": [
+				{
+					"name": "Rent movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODQwNzU5LCJleHAiOjE2OTA5MjcxNTl9.jDVlyMD4KC3i7wfMF6C5X6-QARqgrzceYUGaF7pTnJ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"goHaBMgaWnlMLcphzvZU\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}rent-movies/rent",
+							"host": [
+								"{{url}}rent-movies"
+							],
+							"path": [
+								"rent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODQwNzU5LCJleHAiOjE2OTA5MjcxNTl9.jDVlyMD4KC3i7wfMF6C5X6-QARqgrzceYUGaF7pTnJ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"rAHiPJeQczRWq9mqSMDp\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}rent-movies/return",
+							"host": [
+								"{{url}}rent-movies"
+							],
+							"path": [
+								"return"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all rents for admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im9GeWhWTTVFN1JQczhuQXFLQ2lDIiwiaWF0IjoxNjkwODQwNzU5LCJleHAiOjE2OTA5MjcxNTl9.jDVlyMD4KC3i7wfMF6C5X6-QARqgrzceYUGaF7pTnJ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}rent-movies/active",
+							"host": [
+								"{{url}}rent-movies"
+							],
+							"path": [
+								"active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
