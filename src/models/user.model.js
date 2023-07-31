@@ -171,4 +171,39 @@ export const dbIsMovieLiked = async (movieId, userId) => {
   }
 };
 
+/**
+ * Get all users with roles
+ * @returns { Promise<Array> }
+ * @description Get all users with roles
+ */
+export const dbGetAllUsers = async () => {
+  try {
+    const usersSnapshot = await usersRef.get();
+    const usersDataPromises = usersSnapshot.docs.map(async (userSnapshot) => {
+      const userData = userSnapshot.data();
+      userData.id = userSnapshot.id;
+      userData.password = null;
+
+      if (userData.roles && Array.isArray(userData.roles)) {
+        const rolesDataPromises = userData.roles.map(async (roleRef) => {
+          const roleSnapshot = await roleRef.get();
+          return roleSnapshot.exists ? roleSnapshot.data().name : null;
+        });
+        const rolesData = await Promise.all(rolesDataPromises);
+        userData.roles = rolesData.filter((roleName) => roleName !== null);
+      } else {
+        userData.roles = [];
+      }
+
+      return userData;
+    });
+
+    const usersData = await Promise.all(usersDataPromises);
+    return usersData;
+  } catch (error) {
+    return [];
+  }
+};
+
+
 export default usersRef;

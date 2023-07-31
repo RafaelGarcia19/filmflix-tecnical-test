@@ -1,8 +1,8 @@
-import user from "../models/user.model";
 import {
   dbAddLikedMovie,
   dbIsMovieLiked,
   dbRemoveLikedMovie,
+  dbGetAllUsers,
 } from "../models/user.model";
 import {
   dbAddLikeToMovieById,
@@ -10,8 +10,7 @@ import {
 } from "../models/movie.model";
 
 export const getAllUsers = async (req, res) => {
-  const docsSnapshot = await user.get();
-  const users = docsSnapshot.docs.map((doc) => doc.data());
+  const users = await dbGetAllUsers();
   res.status(200).json(users);
 };
 
