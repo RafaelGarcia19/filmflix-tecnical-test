@@ -1,5 +1,5 @@
 import Movie from "../models/movie.model";
-import { dbMovies, dbCreateMovieWithImage } from "../models/movie.model";
+import { dbMovies, dbCreateMovieWithImage, dbDeleteMovieById } from "../models/movie.model";
 
 export const createMovie = async (req, res) => {
   const newMovie = {
@@ -42,8 +42,9 @@ export const updateMovieById = async (req, res) => {
   res.json(updatedMovie);
 };
 
-export const deleteMovieById = (req, res) => {
-  const id = req.params.movieId;
-  const response = Movie.doc(id).delete();
-  res.json(response);
+export const deleteMovieById = async (req, res) => {
+    const id = req.params.movieId;
+    const response = await dbDeleteMovieById(id);
+    if (!response) return res.status(404).json({ message: "Movie not found" });
+    res.json({ message: "Movie deleted successfully" });
 };
