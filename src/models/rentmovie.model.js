@@ -29,7 +29,13 @@ export const dbRentMovie = async (id, userId) => {
         active: true,
       });
       await Movies.doc(id).update({ stock: movie.stock - 1 });
-      return { id: rentMovie.id, ...movie };
+      const newRentMovie = await rentMovie.get();
+      // const newRentDate = newRentMovie.data().rent_date.toDate();
+      const newRentData = {
+        rent_date: newRentMovie.data().rent_date.toDate(),
+        return_date: newRentMovie.data().return_date.toDate(),
+      }
+      return { id: rentMovie.id, ...newRentData, movie: movieRef.ref, userId: userRef.ref };
     } else {
       return null;
     }
@@ -38,3 +44,30 @@ export const dbRentMovie = async (id, userId) => {
     return null;
   }
 };
+
+/**
+ * Return a movie by id and user id from firestore
+ * @param {string} rentId
+ * @returns {object} movie
+ * @description This function return a movie from firestore by id and user id and return the movie
+ */
+export const dbReturnMovie = async (rentId) => {
+  try {
+    const rentMovieRef = await rentMoviesRef.doc(rentId).get();
+    if (!rentMovieRef.exists) return null;
+    const rentMovie = rentMovieRef.data();
+    if (rentMovie.active) {
+      await rentMovieRef.ref.update({ active: false });
+      const movieRef = await rentMovie.movie.get();
+      const movie = movieRef.data();
+      await Movies.doc(movieRef.id).update({ stock: movie.stock + 1 });
+      return { id: rentMovieRef.id, active: false, movie: movieRef.ref };
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+
+}
