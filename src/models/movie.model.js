@@ -60,6 +60,26 @@ export const dbDeleteMovieById = async (id) => {
 };
 
 /**
+ * Get availability movie by name if the movie is not found return null
+ * @param {string} name
+ * @returns {Object | null} movie
+ * @description This function return a movie object with availability true
+ */
+export const dbGetMovieByName = async (name) => {
+  try {
+    const docsSnapshot = await usersRef
+      .where("title", "==", name)
+      .where("availability", "==", true)
+      .get();
+    if (docsSnapshot.empty) return null;
+    const movie = docsSnapshot.docs[0].data();
+    return { id: docsSnapshot.docs[0].id, ...movie };
+  } catch (error) {
+    return null;
+  }
+};
+
+/**
  * Edit movie by id with new movie data or add new images
  * @param {string} id
  * @param {object} movie

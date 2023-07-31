@@ -4,6 +4,7 @@ import {
   dbCreateMovieWithImage,
   dbDeleteMovieById,
   dbEditMovieById,
+  dbGetMovieByName,
 } from "../models/movie.model";
 
 export const createMovie = async (req, res) => {
@@ -14,6 +15,7 @@ export const createMovie = async (req, res) => {
     rental_price: Number(req.body.rental_price),
     sale_price: Number(req.body.sale_price),
     availability: !!req.body.availability,
+    likes: 0,
   };
   const images = req.files;
   const movie = await dbCreateMovieWithImage(newMovie, images);
@@ -33,6 +35,19 @@ export const getMovieById = async (req, res) => {
   res.json(movie);
 };
 
+/**
+ * Get movie by name if the movie is not found return null
+ * @param {string} name
+ * @returns {Object | null} movie
+ * @description This function return a movie object with availability true
+ */
+export const getMovieByName = async (req, res) => {
+  const name = req.params.movieName;
+  const movie = await dbGetMovieByName(name);
+  if (!movie) return res.status(404).json({ message: "Movie not found" });
+  res.json(movie);
+};
+
 export const updateMovieById = async (req, res) => {
   const id = req.params.movieId;
   const movie = {
@@ -42,6 +57,7 @@ export const updateMovieById = async (req, res) => {
     rental_price: Number(req.body.rental_price),
     sale_price: Number(req.body.sale_price),
     availability: !!req.body.availability,
+    likes: Number(req.body.likes),
   };
   const images = req.files;
   const response = await dbEditMovieById(id, movie, images);
