@@ -1,5 +1,5 @@
 import { initializeApp, cert } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import { getFirestore, Timestamp } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 import serviceAccount from "../firebase.json";
 import env from "./config";
@@ -14,4 +14,6 @@ const db = getFirestore();
 
 const storage = getStorage().bucket();
 
-export { db, storage };
+const timestamp = Timestamp;
+
+export { db, storage, timestamp };
