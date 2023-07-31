@@ -1,12 +1,14 @@
-import {Router} from 'express';
-import {getAllUsers} from '../controllers/users.controller';
+import { Router } from "express";
+import {
+  getAllUsers,
+  addLikedMovie,
+  removeLikedMovie,
+} from "../controllers/users.controller";
+import { isAdmin, isAuth } from "../middlewares";
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.json('Get all users');
-});
-
-router.get('/allusers', getAllUsers);
-
+router.get("/allusers", [isAuth, isAdmin], getAllUsers);
+router.post("/addlikedmovie", isAuth, addLikedMovie);
+router.post("/removelikedmovie", isAuth, removeLikedMovie);
 
 export default router;

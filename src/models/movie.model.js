@@ -1,9 +1,9 @@
 import { db, storage } from "../database";
 
-const usersRef = db.collection("movies");
+const moviesRef = db.collection("movies");
 
 export const dbMovies = async () => {
-  const docsSnapshot = await usersRef.get();
+  const docsSnapshot = await moviesRef.get();
   const movies = docsSnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
@@ -13,7 +13,7 @@ export const dbMovies = async () => {
 
 export const dbCreateMovieWithImage = async (movie, images) => {
   try {
-    const docRef = await usersRef.add(movie);
+    const docRef = await moviesRef.add(movie);
     const movieWithId = { id: docRef.id, ...movie };
     const imageStorageRefs = [];
     const imageUrls = await Promise.all(
@@ -41,7 +41,7 @@ export const dbCreateMovieWithImage = async (movie, images) => {
 
 export const dbDeleteMovieById = async (id) => {
   try {
-    const docRef = usersRef.doc(id);
+    const docRef = moviesRef.doc(id);
     const doc = await docRef.get();
     if (!doc.exists) return null;
     const movie = doc.data();
@@ -67,7 +67,7 @@ export const dbDeleteMovieById = async (id) => {
  */
 export const dbGetMovieByName = async (name) => {
   try {
-    const docsSnapshot = await usersRef
+    const docsSnapshot = await moviesRef
       .where("title", "==", name)
       .where("availability", "==", true)
       .get();
@@ -88,7 +88,7 @@ export const dbGetMovieByName = async (name) => {
  */
 export const dbEditMovieById = async (id, movie, images) => {
   try {
-    const docRef = usersRef.doc(id);
+    const docRef = moviesRef.doc(id);
     const doc = await docRef.get();
     if (!doc.exists) return null;
     const movieData = doc.data();
@@ -123,4 +123,42 @@ export const dbEditMovieById = async (id, movie, images) => {
   }
 };
 
-export default usersRef;
+/**
+ * Add a like to a movie
+ * @param {string} id
+ * @returns {object | null} movie
+ * @description This function return a movie object with availability true and add a like to the movie if the movie is not found return null
+ */
+export const dbAddLikeToMovieById = async (id) => {
+  try {
+    const docRef = moviesRef.doc(id);
+    const doc = await docRef.get();
+    if (!doc.exists) return null;
+    const movie = doc.data();
+    await docRef.update({ likes: movie.likes + 1 });
+    return { id: doc.id, ...movie, likes: movie.likes + 1, movieRef: doc.ref };
+  } catch (error) {
+    return null;
+  }
+};
+
+/**
+ * Remove a like to a movie
+ * @param {string} id
+ * @returns {object | null} movie
+ * @description This function return a movie object with availability true and remove a like to the movie if the movie is not found return null
+ */
+export const dbRemoveLikeToMovieById = async (id) => {
+  try {
+    const docRef = moviesRef.doc(id);
+    const doc = await docRef.get();
+    if (!doc.exists) return null;
+    const movie = doc.data();
+    await docRef.update({ likes: movie.likes - 1 });
+    return { id: doc.id, ...movie, likes: movie.likes - 1 };
+  } catch (error) {
+    return null;
+  }
+};
+
+export default moviesRef;

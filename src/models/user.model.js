@@ -86,4 +86,89 @@ export const dbGetUserRolesById = async (id) => {
   }
 };
 
+/**
+ * Add movie to liked movies
+ * @param { Array<object> } movieRefs
+ * @param { string } userId
+ * @returns { Promise<boolean> }
+ * @description Add movie to liked movies
+ */
+export const dbAddLikedMovie = async (movieRefs, userId) => {
+  try {
+    const userRef = usersRef.doc(userId);
+    const userSnapshot = await userRef.get();
+    if (!userSnapshot.exists) {
+      return false;
+    }
+    const user = userSnapshot.data();
+    const likedMovies = user.liked_movies || [];
+    if (likedMovies.find((movie) => movie.id === movieRefs.id)) {
+      return false;
+    }
+    likedMovies.push(movieRefs);
+    await userRef.update({ liked_movies: likedMovies });
+    return {
+      id: userSnapshot.id,
+      ...user,
+      liked_movies: likedMovies.map((movie) => movie.id),
+    };
+  } catch (error) {
+    return false;
+  }
+};
+
+/**
+ * Remove movie from liked movies
+ * @param { string } movieId
+ * @param { string } userId
+ * @returns { Promise<boolean> }
+ * @description Remove movie from liked movies
+ */
+export const dbRemoveLikedMovie = async (movieId, userId) => {
+  try {
+    const userRef = usersRef.doc(userId);
+    const userSnapshot = await userRef.get();
+    if (!userSnapshot.exists) {
+      return false;
+    }
+    const user = userSnapshot.data();
+    const likedMovies = user.liked_movies || [];
+    const movieIndex = likedMovies.findIndex((movie) => movie.id === movieId);
+    if (movieIndex === -1) {
+      return false;
+    }
+    likedMovies.splice(movieIndex, 1);
+    await userRef.update({ liked_movies: likedMovies });
+    return {
+      id: userSnapshot.id,
+      ...user,
+      liked_movies: likedMovies.map((movie) => movie.id),
+    };
+  } catch (error) {
+    return false;
+  }
+};
+
+/**
+ * Verify is user have a movie in liked_movies
+ * @param { string } movieId
+ * @param { string } userId
+ * @returns { Promise<boolean> }
+ */
+export const dbIsMovieLiked = async (movieId, userId) => {
+  try {
+    const userRef = usersRef.doc(userId);
+    const userSnapshot = await userRef.get();
+    if (!userSnapshot.exists) {
+      return false;
+    }
+    const user = userSnapshot.data();
+    const likedMovies = user.liked_movies || [];
+    const movieIndex = likedMovies.findIndex((movie) => movie.id === movieId);
+    return movieIndex !== -1;
+  } catch (error) {
+    return false;
+  }
+};
+
 export default usersRef;
