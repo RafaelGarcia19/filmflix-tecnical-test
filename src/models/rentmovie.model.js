@@ -34,8 +34,13 @@ export const dbRentMovie = async (id, userId) => {
       const newRentData = {
         rent_date: newRentMovie.data().rent_date.toDate(),
         return_date: newRentMovie.data().return_date.toDate(),
-      }
-      return { id: rentMovie.id, ...newRentData, movie: movieRef.ref, userId: userRef.ref };
+      };
+      return {
+        id: rentMovie.id,
+        ...newRentData,
+        movie: movieRef.ref,
+        userId: userRef.ref,
+      };
     } else {
       return null;
     }
@@ -69,5 +74,46 @@ export const dbReturnMovie = async (rentId) => {
     console.log(error);
     return null;
   }
+};
 
-}
+/**
+ * Get all active rent movies from firestore
+ * @returns {Promise<array>} rentMovies
+ * @description This function return all rent movies from firestore
+ */
+export const dbGetAllActiveRentMovies = async () => {
+  try {
+    const rentMovies = [];
+    const rentMoviesSnapshot = await rentMoviesRef
+      .where("active", "==", true)
+      .get();
+    const response = await Promise.all(
+      rentMoviesSnapshot.docs.map(async (doc) => {
+        const movieRef = doc.data().movie;
+        const userRef = doc.data().userId;
+
+        const [movieSnapshot, userSnapshot] = await Promise.all([
+          movieRef.get(),
+          userRef.get(),
+        ]);
+
+        if (movieSnapshot.exists && userSnapshot.exists) {
+          const movieData = movieSnapshot.data();
+          const userData = userSnapshot.data();
+          console.log(movieData);
+          rentMovies.push({
+            id: doc.id,
+            movie: { id: movieSnapshot.id, name: movieData.title },
+            user: { id: userSnapshot.id, name: userData.name },
+            rent_date: doc.data().rent_date.toDate(),
+            return_date: doc.data().return_date.toDate(),
+          });
+        }
+      })
+    );
+    return rentMovies;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};

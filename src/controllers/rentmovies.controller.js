@@ -1,4 +1,4 @@
-import { dbRentMovie,dbReturnMovie } from '../models/rentmovie.model'
+import { dbRentMovie,dbReturnMovie, dbGetAllActiveRentMovies } from '../models/rentmovie.model'
 
 /**
  * Rent a movie by id and user id from firestore
@@ -32,4 +32,16 @@ export const returnMovie = async (req, res) => {
         return res.status(400).json({ message: "Rent Movie not found" });
     }
     return res.status(200).json(movie);
+}
+
+/**
+ * Get all active rent movies from firestore
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Promise<Object>}
+ * @description This function return all rent movies from firestore
+ */
+export const getAllActiveRentMovies = async (req, res) => {
+    const rentMovies = await dbGetAllActiveRentMovies();
+    return res.status(200).json(rentMovies);
 }
