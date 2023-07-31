@@ -2,13 +2,73 @@ import { db, storage } from "../database";
 
 const moviesRef = db.collection("movies");
 
-export const dbMovies = async () => {
-  const docsSnapshot = await moviesRef.get();
-  const movies = docsSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
-  return movies;
+export const dbGetMovies = async (page, pageSize, orderBy) => {
+  try {
+    const movieCollectionInfo = await moviesRef.get();
+    let moviesRefQuery = moviesRef
+      .limit(pageSize)
+      .offset((page - 1) * pageSize);
+    moviesRefQuery = moviesRefQuery.where("availability", "==", true);
+    if ((orderBy = "likes")) {
+      moviesRefQuery = moviesRefQuery.orderBy("likes", "desc");
+    } else {
+      moviesRefQuery = moviesRefQuery.orderBy("title", "asc");
+    }
+    const docsSnapshot = await moviesRefQuery.get();
+    const movies = docsSnapshot.docs.map((doc) => {
+      const movie = doc.data();
+      return { id: doc.id, ...movie };
+    });
+    return {
+      movies,
+      page,
+      pageSize,
+      total: movies.length,
+      totalPages: Math.ceil(movieCollectionInfo.size / pageSize),
+    };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const dbGetMoviesAdmin = async (
+  page,
+  pageSize,
+  orderBy,
+  availability
+) => {
+  try {
+    let moviesRefQuery = moviesRef;
+    if (typeof availability === "boolean") {
+      moviesRefQuery = moviesRefQuery.where("availability", "==", availability);
+    }
+    if (orderBy === "likes") {
+      moviesRefQuery = moviesRefQuery.orderBy("likes", "desc");
+    } else {
+      moviesRefQuery = moviesRefQuery.orderBy("title", "asc");
+    }
+    const filteredDocsSnapshot = await moviesRefQuery.get();
+    const totalFilteredMovies = filteredDocsSnapshot.size;
+    const pageStartIndex = (page - 1) * pageSize;
+    const pageEndIndex = pageStartIndex + pageSize;
+    const docsSnapshot = await moviesRefQuery.limit(pageEndIndex).get();
+    const movies = docsSnapshot.docs.map((doc) => {
+      const movie = doc.data();
+      return { id: doc.id, ...movie };
+    });
+    return {
+      movies,
+      page,
+      pageSize,
+      total: movies.length,
+      totalItems: totalFilteredMovies,
+      totalPages: Math.ceil(totalFilteredMovies / pageSize),
+    };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 };
 
 export const dbCreateMovieWithImage = async (movie, images) => {

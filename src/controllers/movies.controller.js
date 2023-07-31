@@ -1,10 +1,11 @@
 import Movie from "../models/movie.model";
 import {
-  dbMovies,
   dbCreateMovieWithImage,
   dbDeleteMovieById,
   dbEditMovieById,
   dbGetMovieByName,
+  dbGetMovies,
+  dbGetMoviesAdmin
 } from "../models/movie.model";
 
 export const createMovie = async (req, res) => {
@@ -23,8 +24,50 @@ export const createMovie = async (req, res) => {
   return res.status(201).json(movie);
 };
 
+/**
+ * Get all movies with pagination and order for users
+ * @param {number} page
+ * @param {number} limit
+ * @param {string} orderBy
+ * @returns {array} movies
+ * @description This function return an array of movies with pagination and order
+ */
 export const getMovies = async (req, res) => {
-  const movies = await dbMovies();
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const orderBy = req.query.orderBy || "title";
+  const movies = await dbGetMovies(page, limit, orderBy);
+  if (!movies) return res.status(500).json({ message: "Something went wrong" });
+  res.json(movies);
+};
+
+/**
+ * Get all movies with pagination and order for admin
+ * @param {number} page
+ * @param {number} limit
+ * @param {string} orderBy
+ * @param {boolean} availability
+ * @returns {array} movies
+ * @description This function return an array of movies with pagination and order
+ * and filter by availability
+ * if availability is true return only available movies
+ * if availability is false return only unavailable movies
+ * if availability is null return all movies
+ */
+export const getMoviesAdmin = async (req, res) => {
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const orderBy = req.query.orderBy || "title";
+  console.log(req.query.availability);
+  if (req.query.availability === "true") {
+    var availability = true;
+  } else if (req.query.availability === "false") {
+    var availability = false;
+  } else {
+    var availability = null;
+  }
+  const movies = await dbGetMoviesAdmin(page, limit, orderBy, availability);
+  if (!movies) return res.status(500).json({ message: "Something went wrong" });
   res.json(movies);
 };
 
