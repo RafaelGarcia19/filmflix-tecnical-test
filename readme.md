@@ -83,3 +83,10 @@ pm2 start ecosystem.config.js
 
 Con estos pasos, tu aplicación debería estar en funcionamiento en modo de producción en el servidor.
 
+Por defecto se crea un usuario administrador, las credenciales de este usuarios son
+
+```
+name: admin
+email: admin@example.com
+password: admin
+```
